@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">BPBD Kabupaten Kuningan</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="peringatan_dini_detail">http://192.168.0.103/simbpbd/index.php/apps/mobile_peringatan_dini_detail/</string>
+    <string name="info_bencana_detail">http://192.168.0.103/simbpbd/index.php/apps/mobile_info_bencana_detail/</string>
+    <string name="api">http://192.168.0.103/simbpbd/index.php/api/</string>
+    <string name="peringatan_dini_published">peringatan_dini_published/</string>
+    <string name="info_bencana_published">info_bencana_published/</string>
+    <string name="laporan_masyarakat_input">laporan_masyarakat_input/</string>
+    <string name="verifikasi">verifikasi/</string>
+    <string name="verifikasi_daftar">verifikasi_daftar/</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_master_apps">MasterApps</string>
+</resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_beranda"
+            android:icon="@drawable/beranda"
+            android:title="Beranda" />
+        <item
+            android:id="@+id/nav_peringatan_dini"
+            android:icon="@drawable/peringatandini"
+            android:title="Peringatan Dini" />
+        <item
+            android:id="@+id/nav_info_bencana"
+            android:icon="@drawable/infobencana"
+            android:title="Info Bencana" />
+        <item
+            android:id="@+id/nav_laporan_masyarakat"
+            android:icon="@drawable/laporanmasyarakat"
+            android:title="Laporan Masyarakat" />
+        <item
+            android:id="@+id/nav_peta_kerawanan"
+            android:icon="@drawable/petakerawanan"
+            android:title="Peta Kerawanan" />
+        <item
+            android:id="@+id/nav_rawan_kebakaran_hutan"
+            android:icon="@drawable/petajalurevakuasi"
+            android:title="Peta Jalur Evakuasi" />
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/chatgroup"
+            android:title="Forum Diskusi" />
+    </group>
+    <item android:title="Pengguna">
+        <menu>
+            <item
+                android:id="@+id/nav_profil"
+                android:icon="@drawable/login"
+                android:title="Profil" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/login"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>

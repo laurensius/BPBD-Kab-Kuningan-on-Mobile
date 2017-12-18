@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF170D</color>
+    <color name="colorPrimaryDark">#FF5500</color>
+    <color name="colorAccent">#E8350C</color>
+    <color name="btnPositif">#FF5500</color>
+    <color name="btnNegatif">#FEC34D</color>
+    <color name="btnGet">#FBC299</color>
+    <color name="btnRemove">#FBD4b9</color>
+</resources>
