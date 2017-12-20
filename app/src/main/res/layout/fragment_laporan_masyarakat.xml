@@ -6,6 +6,7 @@
     android:padding="5dp"
     tools:context="com.laurensius_dede_suhardiman.bpbdkabupatenkuningan.FragmentLaporanMasyarakat">
 
+    <!-- M E N U  -->
     <LinearLayout
         android:id="@+id/llMenuLaporan"
         android:layout_width="match_parent"
@@ -58,7 +59,9 @@
                 android:text="STATUS LAPORAN"/>
         </LinearLayout>
     </LinearLayout>
+    <!-- E N D   O F   M E N U  -->
 
+    <!-- C E K  L A P O R A N -->
     <LinearLayout
         android:id="@+id/llCekLaporan"
         android:layout_width="match_parent"
@@ -67,8 +70,81 @@
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:visibility="gone">
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llError"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:src="@mipmap/no_network"
+                android:layout_width="300px"
+                android:layout_height="300px"
+                android:layout_gravity="center"
+                android:layout_marginBottom="40dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mengalami kendala saat terhubung ke server\nKlik gambar untuk mencoba kembali."
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/llNoData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:src="@mipmap/no_peringatan_dini"
+                android:layout_width="300px"
+                android:layout_height="300px"
+                android:layout_gravity="center"
+                android:layout_marginBottom="40dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tidak ada laporan masyarakat\nKlik gambar untuk muat ulang"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:orientation="vertical">
+            <WebView
+                android:id="@+id/wvDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></WebView>
+            <Button
+                android:id="@+id/btnKembali"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kembali" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llSuccess"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvLaporanMasyarakat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- E N D   O F   C E K  L A P O R A N -->
+
+    <!-- K I R I M   L A P O R A N-->
     <LinearLayout
         android:id="@+id/llKirimLaporan"
         android:layout_width="match_parent"
@@ -223,7 +299,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp">
                 <Button
                     android:id="@+id/btnHapusGambar"
                     android:layout_width="match_parent"
@@ -235,7 +313,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp">
                 <Button
                     android:id="@+id/btnGallery"
                     android:layout_width="match_parent"
@@ -253,7 +333,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp">
                 <Button
                     android:id="@+id/btnBatal"
                     android:layout_width="match_parent"
@@ -265,7 +347,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp">
                 <Button
                     android:id="@+id/btnUpload"
                     android:layout_width="match_parent"
@@ -275,10 +359,6 @@
                     android:text="Kirim Laporan"/>
             </LinearLayout>
         </LinearLayout>
-
-
-
     </LinearLayout>
-
-
+    <!-- E N D   O F   K I R I M   L A P O R A N -->
 </LinearLayout>

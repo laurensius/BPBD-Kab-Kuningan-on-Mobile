@@ -174,7 +174,7 @@ public class FragmentInfoBencana extends Fragment {
                                 kategori = R.mipmap.ico_7;
                             }else
                             if(obj_info_bencana.get("kategori").equals("8")){
-                                kategori = R.mipmap.ico_8;
+                                kategori = R.mipmap.ico_0;
                             }
                             infoBencana.add(new InfoBencana(
                                     kategori,

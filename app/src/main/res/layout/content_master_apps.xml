@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     tools:context="com.laurensius_dede_suhardiman.bpbdkabupatenkuningan.MasterApps"
-    tools:showIn="@layout/app_bar_landingpage">
+    tools:showIn="@layout/app_bar_master_apps">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -14,7 +14,8 @@
             android:id="@+id/FrameMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp">
         </FrameLayout>
     </LinearLayout>
 </ScrollView>
