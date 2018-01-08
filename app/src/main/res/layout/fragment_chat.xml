@@ -3,12 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.laurensius_dede_suhardiman.bpbdkabupatenkuningan.FragmentBeranda">
+    tools:context="com.laurensius_dede_suhardiman.bpbdkabupatenkuningan.FragmentChat">
 
     <WebView
-        android:id="@+id/wvBeranda"
+        android:id="@+id/wvChat"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </WebView>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

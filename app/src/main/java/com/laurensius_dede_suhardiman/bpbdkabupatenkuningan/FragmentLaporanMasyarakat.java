@@ -183,6 +183,10 @@ public class FragmentLaporanMasyarakat extends Fragment {
                 llMenuLaporan.setVisibility(View.GONE);
                 llKirimLaporan.setVisibility(View.GONE);
                 llCekLaporan.setVisibility(View.VISIBLE);
+                llError.setVisibility(View.GONE);
+                llNoData.setVisibility(View.GONE);
+                llDetail.setVisibility(View.GONE);
+                llSuccess.setVisibility(View.VISIBLE);
                 new AsyncLaporanMasyarakat().execute();
             }
         });
@@ -229,6 +233,8 @@ public class FragmentLaporanMasyarakat extends Fragment {
                 ivPreview.setImageDrawable(null);
             }
         });
+
+        new AsyncLaporanMasyarakat().execute();
     }
 
     private void captureImage() {
@@ -454,14 +460,14 @@ public class FragmentLaporanMasyarakat extends Fragment {
                             if(obj_laporan_masyarakat.get("kategori").equals("7")){
                                 kategori = R.mipmap.ico_7;
                             }else
-                            if(obj_laporan_masyarakat.get("kategori").equals("8")){
+                            if(obj_laporan_masyarakat.get("kategori").equals("0")){
                                 kategori = R.mipmap.ico_0;
                             }
                             laporanMasyarakat.add(new LaporanMasyarakat(
                                     kategori,
                                     obj_laporan_masyarakat.getString("id"),
                                     obj_laporan_masyarakat.getString("judul"),
-                                    obj_laporan_masyarakat.getString("tanggal_kirim"),
+                                    obj_laporan_masyarakat.getString("tanggal_buat"),
                                     obj_laporan_masyarakat.getString("status")));
                         }
                     }catch (final JSONException e) {
