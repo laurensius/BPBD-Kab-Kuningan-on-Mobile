@@ -114,6 +114,10 @@ public class LandingPage extends AppCompatActivity
             fragment = new FragmentPeringatanDini();
         }else if (id == R.id.nav_info_bencana) {
             fragment = new FragmentInfoBencana();
+        }else if (id == R.id.nav_peta_kerawanan) {
+            fragment = new FragmentKerawanan();
+        }else if (id == R.id.nav_peta_evakuasi) {
+            fragment = new FragmentEvakuasi();
         }else if (id == R.id.nav_login) {
             fragment = new FragmentLogin();
         }else if (id == R.id.nav_daftar) {

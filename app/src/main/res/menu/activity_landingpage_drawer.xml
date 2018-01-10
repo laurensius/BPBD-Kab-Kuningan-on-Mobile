@@ -21,7 +21,7 @@
             android:icon="@drawable/petakerawanan"
             android:title="Peta Kerawanan" />
         <item
-            android:id="@+id/nav_rawan_kebakaran_hutan"
+            android:id="@+id/nav_peta_evakuasi"
             android:icon="@drawable/petajalurevakuasi"
             android:title="Peta Jalur Evakuasi" />
     </group>

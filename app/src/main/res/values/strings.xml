@@ -16,6 +16,7 @@
     <string name="laporan_masyarakat_by_pengirim">laporan_masyarakat_by_pengirim/</string>
     <string name="verifikasi">verifikasi/</string>
     <string name="verifikasi_daftar">verifikasi_daftar/</string>
+    <string name="notifikasi">notifikasi/</string>
     <string name="beranda">file:///android_asset/landingpage/index.html</string>
 
 

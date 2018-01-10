@@ -101,6 +101,10 @@ public class MasterApps extends AppCompatActivity
             fragment = new FragmentInfoBencana();
         }else if (id == R.id.nav_laporan_masyarakat) {
             fragment = new FragmentLaporanMasyarakat();
+        }else if (id == R.id.nav_peta_kerawanan) {
+            fragment = new FragmentKerawanan();
+        }else if (id == R.id.nav_peta_evakuasi) {
+            fragment = new FragmentEvakuasi();
         }else if (id == R.id.nav_chat) {
             fragment = new FragmentChat();
         }else if (id == R.id.nav_login) {
