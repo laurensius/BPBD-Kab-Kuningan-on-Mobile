@@ -151,7 +151,10 @@ public class FragmentLogin extends Fragment {
                     editor.commit();
                     etUsername.setText("");
                     etPassword.setText("");
+                    getActivity().stopService(new Intent(getActivity().getBaseContext(), BackgroundService.class));
+                    Log.d("Landing page service :", "TRUE");
                     Intent i = new Intent(getActivity(),MasterApps.class);
+                    i.putExtra("redirect","beranda");
                     startActivity(i);
                     LandingPage.activity.finish();
                 }

@@ -14,7 +14,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +22,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class BackgroundService extends Service {
+public class BackgroundService2 extends Service {
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -37,19 +36,22 @@ public class BackgroundService extends Service {
     int ln = 0;
 
     public static String pref_id;
-    
+
     public static String id;
     public static String api_notif;
 
     String str_jml_peringatan_dini;
     String str_jml_info_bencana;
+    String str_status_laporan_masyarakat;
+    String recent_status_laporan_masyarakat;
+
 
     public int jml_peringatan_dini = 0;
     public int jml_info_bencana = 0;
-    public String status_laporan_masyarakat = "";
-    
+
+
     Timer timer = new Timer();
-    public BackgroundService(){}
+    public BackgroundService2(){}
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -58,7 +60,10 @@ public class BackgroundService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        api_notif = getResources().getString(R.string.api).concat(getResources().getString(R.string.notifikasi));
+        pref =  getSharedPreferences("BPBD_ON_MOBILE", 0);
+        editor = pref.edit();
+        pref_id = pref.getString("ID",null);
+        api_notif = getResources().getString(R.string.api).concat(getResources().getString(R.string.notifikasi)).concat(pref_id).concat("/");
         final Handler handler = new Handler();
         TimerTask doAsynchronousTask = new TimerTask() {
             @Override
@@ -108,7 +113,18 @@ public class BackgroundService extends Service {
                     JSONArray arr_info_bencana = data.getJSONArray("info_bencana");
                     JSONObject obj_jml_info_bencana = arr_info_bencana.getJSONObject(0);
                     str_jml_info_bencana = obj_jml_info_bencana.getString("jumlah");
-
+                    //Status laporan masyarakat
+                    JSONArray arr_lap_masyarakat = data.getJSONArray("laporan_masyarakat");
+                    ln = arr_lap_masyarakat.length();
+                    if(ln > 0){
+                        str_status_laporan_masyarakat = "";
+                        for(int x=0; x<ln; x++){
+                            JSONObject obj_lap_masy = arr_lap_masyarakat.getJSONObject(x);
+                            String status = obj_lap_masy.getString("status");
+                            str_status_laporan_masyarakat = str_status_laporan_masyarakat.concat(status);
+                            Log.d("STATUS", status);
+                        }
+                    }
                 } catch (final JSONException e) {
                     Log.e("Service BPBD", e.getMessage());
                 }
@@ -128,10 +144,13 @@ public class BackgroundService extends Service {
                 init = false;
                 jml_peringatan_dini = Integer.parseInt(str_jml_peringatan_dini);
                 jml_info_bencana = Integer.parseInt(str_jml_info_bencana);
+                recent_status_laporan_masyarakat = str_status_laporan_masyarakat;
             }else{
                 pref =  getSharedPreferences("BPBD_ON_MOBILE", 0);
                 editor = pref.edit();
-                if((jml_peringatan_dini <  Integer.parseInt(str_jml_peringatan_dini)) || (jml_info_bencana  <  Integer.parseInt(str_jml_info_bencana))){
+                if((jml_peringatan_dini <  Integer.parseInt(str_jml_peringatan_dini)) ||
+                   (jml_info_bencana  <  Integer.parseInt(str_jml_info_bencana)) ||
+                   (!recent_status_laporan_masyarakat.equals(str_status_laporan_masyarakat))){
                     Notification.Builder builder = new Notification.Builder(getApplication().getBaseContext());
                     Intent notificationIntent = new Intent(getApplication().getBaseContext(),LandingPage.class);
                     notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -153,6 +172,15 @@ public class BackgroundService extends Service {
                                 .setContentText("Klik di sini untuk detail")
                                 .setContentIntent(pendingIntent);
                     }
+                    if(!recent_status_laporan_masyarakat.equals(str_status_laporan_masyarakat)){
+                        editor.putString("REDIRECT","laporan_masyarakat");
+                        notificationIntent.putExtra("redirect", "laporan_masyarakat");
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplication().getBaseContext(), 0,notificationIntent, 0);
+                        builder.setSmallIcon(R.mipmap.ic_launcher)
+                                .setContentTitle("Notifikasi Laporan Masyarakat")
+                                .setContentText("Cek status terkini laporan Anda di sini.")
+                                .setContentIntent(pendingIntent);
+                    }
                     Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                     builder.setSound(alarmSound);
                     builder.setAutoCancel(true);
@@ -163,6 +191,7 @@ public class BackgroundService extends Service {
                 editor.commit();
                 jml_peringatan_dini = Integer.parseInt(str_jml_peringatan_dini);
                 jml_info_bencana = Integer.parseInt(str_jml_info_bencana);
+                recent_status_laporan_masyarakat = str_status_laporan_masyarakat;
             }
         }
     }

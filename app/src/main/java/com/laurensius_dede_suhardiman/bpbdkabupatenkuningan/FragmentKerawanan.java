@@ -57,7 +57,7 @@ public class FragmentKerawanan extends Fragment {
             }
         });
         wvKerawanan.setWebChromeClient(new WebChromeClient());
-//        wvKerawanan.loadUrl(getResources().getString(R.string.kerawanan));
+        wvKerawanan.loadUrl(getResources().getString(R.string.peta_list).concat(getResources().getString(R.string.kerawanan)));
     }
 
 

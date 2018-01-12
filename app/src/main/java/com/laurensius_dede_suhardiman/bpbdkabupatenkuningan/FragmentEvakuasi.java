@@ -57,7 +57,7 @@ public class FragmentEvakuasi extends Fragment {
             }
         });
         wvEvakuasi.setWebChromeClient(new WebChromeClient());
-//        wvEvakuasi.loadUrl(getResources().getString(R.string.evakuasi));
+        wvEvakuasi.loadUrl(getResources().getString(R.string.peta_list).concat(getResources().getString(R.string.jalur_evakuasi)));
     }
 
 

@@ -1,6 +1,8 @@
 package com.laurensius_dede_suhardiman.bpbdkabupatenkuningan;
 
+import android.app.ActivityManager;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,18 +16,31 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MasterApps extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
     Fragment fragment;
     Dialog dialBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        pref = getApplicationContext().getSharedPreferences("BPBD_ON_MOBILE", 0);
+        editor = pref.edit();
+        if(isNotifServiceOn(BackgroundService2.class)){
+            Log.d("BPBD_ON_MOBILE","Service sudah dalam kondisi ON");
+        }else {
+            startService(new Intent(getBaseContext(), BackgroundService2.class));
+        }
+
         setContentView(R.layout.activity_master_apps);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,8 +55,27 @@ public class MasterApps extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
+        String redirect;
+        Intent i = getIntent();
+        redirect = pref.getString("REDIRECT",null);
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-        tx.replace(R.id.FrameMain, new FragmentBeranda());
+        if (redirect != null) {
+            if(redirect.equals("peringatan_dini")){
+                tx.replace(R.id.FrameMain, new FragmentPeringatanDini());
+                Toast.makeText(MasterApps.this,redirect,Toast.LENGTH_LONG).show();
+            }else
+            if(redirect.equals("info_bencana")){
+                tx.replace(R.id.FrameMain, new FragmentInfoBencana());
+                Toast.makeText(MasterApps.this,redirect,Toast.LENGTH_LONG).show();
+            }else
+            if(redirect.equals("laporan_masyarakat")){
+                tx.replace(R.id.FrameMain, new FragmentLaporanMasyarakat());
+                Toast.makeText(MasterApps.this,redirect,Toast.LENGTH_LONG).show();
+            }
+        } else {
+            tx.replace(R.id.FrameMain, new FragmentBeranda());
+            Toast.makeText(MasterApps.this,redirect,Toast.LENGTH_LONG).show();
+        }
         tx.commit();
         dialBox = createDialogBox();
     }
@@ -116,7 +150,7 @@ public class MasterApps extends AppCompatActivity
         }else if (id == R.id.action_petunjuk){
 //            fragment = new FragmentBantuan();
         }else if (id == R.id.action_logout){
-//            stopService(new Intent(getBaseContext(), BackgroundService.class));
+            stopService(new Intent(getBaseContext(), BackgroundService2.class));
             SharedPreferences preferences = getApplicationContext().getSharedPreferences("BPBD_ON_MOBILE", 0);
             SharedPreferences.Editor editor = preferences.edit();
             editor.clear();
@@ -151,5 +185,15 @@ public class MasterApps extends AppCompatActivity
                 })
                 .create();
         return dialBox;
+    }
+
+    private boolean isNotifServiceOn(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
