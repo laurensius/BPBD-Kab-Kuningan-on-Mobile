@@ -7,4 +7,7 @@
     <color name="btnNegatif">#FEC34D</color>
     <color name="btnGet">#FBC299</color>
     <color name="btnRemove">#FBD4b9</color>
+    <color name="btnClassPrimary">#428bca</color>
+    <color name="textWhite">#FFFFFF</color>
+
 </resources>

@@ -8,9 +8,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ico_1"
+        android:icon="@mipmap/logo_bpbd"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ico_1"
+        android:roundIcon="@mipmap/logo_bpbd"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -19,7 +19,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

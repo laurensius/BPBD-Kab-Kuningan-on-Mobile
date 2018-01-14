@@ -234,6 +234,19 @@ public class FragmentLaporanMasyarakat extends Fragment {
             }
         });
 
+        btnKembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                llMenuLaporan.setVisibility(View.GONE);
+                llKirimLaporan.setVisibility(View.GONE);
+                llCekLaporan.setVisibility(View.VISIBLE);
+                llError.setVisibility(View.GONE);
+                llNoData.setVisibility(View.GONE);
+                llDetail.setVisibility(View.GONE);
+                llSuccess.setVisibility(View.VISIBLE);
+                new AsyncLaporanMasyarakat().execute();
+            }
+        });
         new AsyncLaporanMasyarakat().execute();
     }
 

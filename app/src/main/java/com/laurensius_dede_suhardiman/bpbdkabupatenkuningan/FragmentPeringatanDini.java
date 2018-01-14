@@ -84,6 +84,7 @@ public class FragmentPeringatanDini extends Fragment {
             public void onPageStarted(WebView view, String url, Bitmap favicon){
                 if(pDialog.isShowing())
                     pDialog.dismiss();
+                btnKembali.setVisibility(View.GONE);
                 pDialog.show();
             }
 
@@ -91,6 +92,7 @@ public class FragmentPeringatanDini extends Fragment {
             public void onPageFinished(WebView view, String url) {
                 if(pDialog.isShowing())
                     pDialog.dismiss();
+                btnKembali.setVisibility(View.VISIBLE);
             }
         });
 
@@ -103,6 +105,14 @@ public class FragmentPeringatanDini extends Fragment {
                 llSuccess.setVisibility(View.VISIBLE);
             }
         });
+
+        llError.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AsyncPeringatanDini().execute();
+            }
+        });
+
         new AsyncPeringatanDini().execute();
     }
 

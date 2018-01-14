@@ -41,6 +41,7 @@ public class LandingPage extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         act = this;
+        activity = this;
         pref = getApplicationContext().getSharedPreferences("BPBD_ON_MOBILE", 0);
         editor = pref.edit();
 
@@ -94,8 +95,6 @@ public class LandingPage extends AppCompatActivity
         }else {
             startService(new Intent(getBaseContext(), BackgroundService.class));
         }
-
-
     }
 
     @Override

@@ -41,8 +41,8 @@ public class BackgroundService extends Service {
     public static String id;
     public static String api_notif;
 
-    String str_jml_peringatan_dini;
-    String str_jml_info_bencana;
+    String str_jml_peringatan_dini = "0";
+    String str_jml_info_bencana = "0";
 
     public int jml_peringatan_dini = 0;
     public int jml_info_bencana = 0;
@@ -96,6 +96,8 @@ public class BackgroundService extends Service {
             HTTPSvc sh = new HTTPSvc();
             JSON_data = sh.makeServiceCall(api_notif, HTTPSvc.POST);
             if(JSON_data!=null){
+                Log.d("Service 1",api_notif);
+                Log.d("Service 1",JSON_data);
                 try {
                     JSONObject jsonObj = new JSONObject(JSON_data);
                     JSONObject response = jsonObj.getJSONObject("response");

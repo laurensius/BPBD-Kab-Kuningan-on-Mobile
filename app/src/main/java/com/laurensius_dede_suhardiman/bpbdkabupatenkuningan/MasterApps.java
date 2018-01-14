@@ -149,7 +149,7 @@ public class MasterApps extends AppCompatActivity
 //            fragment = new FragmentTentang();
         }else if (id == R.id.action_petunjuk){
 //            fragment = new FragmentBantuan();
-        }else if (id == R.id.action_logout){
+        }else if (id == R.id.action_logout || id == R.id.nav_logout){
             stopService(new Intent(getBaseContext(), BackgroundService2.class));
             SharedPreferences preferences = getApplicationContext().getSharedPreferences("BPBD_ON_MOBILE", 0);
             SharedPreferences.Editor editor = preferences.edit();

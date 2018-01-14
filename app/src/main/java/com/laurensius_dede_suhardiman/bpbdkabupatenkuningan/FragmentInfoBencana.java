@@ -83,6 +83,7 @@ public class FragmentInfoBencana extends Fragment {
             public void onPageStarted(WebView view, String url, Bitmap favicon){
                 if(pDialog.isShowing())
                     pDialog.dismiss();
+                btnKembali.setVisibility(View.GONE);
                 pDialog.show();
             }
 
@@ -90,6 +91,7 @@ public class FragmentInfoBencana extends Fragment {
             public void onPageFinished(WebView view, String url) {
                 if(pDialog.isShowing())
                     pDialog.dismiss();
+                btnKembali.setVisibility(View.VISIBLE);
             }
         });
 

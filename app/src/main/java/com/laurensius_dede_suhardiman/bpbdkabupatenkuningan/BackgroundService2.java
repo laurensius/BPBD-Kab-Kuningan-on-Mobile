@@ -40,10 +40,10 @@ public class BackgroundService2 extends Service {
     public static String id;
     public static String api_notif;
 
-    String str_jml_peringatan_dini;
-    String str_jml_info_bencana;
-    String str_status_laporan_masyarakat;
-    String recent_status_laporan_masyarakat;
+    String str_jml_peringatan_dini = "0";
+    String str_jml_info_bencana = "0";
+    String str_status_laporan_masyarakat = "0";
+    String recent_status_laporan_masyarakat = "0";
 
 
     public int jml_peringatan_dini = 0;
@@ -116,8 +116,9 @@ public class BackgroundService2 extends Service {
                     //Status laporan masyarakat
                     JSONArray arr_lap_masyarakat = data.getJSONArray("laporan_masyarakat");
                     ln = arr_lap_masyarakat.length();
+                    str_status_laporan_masyarakat = "";
                     if(ln > 0){
-                        str_status_laporan_masyarakat = "";
+                        loaddata=true;
                         for(int x=0; x<ln; x++){
                             JSONObject obj_lap_masy = arr_lap_masyarakat.getJSONObject(x);
                             String status = obj_lap_masy.getString("status");
@@ -146,52 +147,56 @@ public class BackgroundService2 extends Service {
                 jml_info_bencana = Integer.parseInt(str_jml_info_bencana);
                 recent_status_laporan_masyarakat = str_status_laporan_masyarakat;
             }else{
-                pref =  getSharedPreferences("BPBD_ON_MOBILE", 0);
-                editor = pref.edit();
-                if((jml_peringatan_dini <  Integer.parseInt(str_jml_peringatan_dini)) ||
-                   (jml_info_bencana  <  Integer.parseInt(str_jml_info_bencana)) ||
-                   (!recent_status_laporan_masyarakat.equals(str_status_laporan_masyarakat))){
-                    Notification.Builder builder = new Notification.Builder(getApplication().getBaseContext());
-                    Intent notificationIntent = new Intent(getApplication().getBaseContext(),LandingPage.class);
-                    notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    if(jml_peringatan_dini < Integer.parseInt(str_jml_peringatan_dini)){
-                        editor.putString("REDIRECT","peringatan_dini");
-                        notificationIntent.putExtra("redirect", "peringatan_dini");
-                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplication().getBaseContext(), 0,notificationIntent, 0);
-                        builder.setSmallIcon(R.mipmap.ic_launcher)
-                                .setContentTitle("Notifikasi Peringatan Dini")
-                                .setContentText("Klik di sini untuk detail")
-                                .setContentIntent(pendingIntent);
+                if(loaddata){
+                    pref =  getSharedPreferences("BPBD_ON_MOBILE", 0);
+                    editor = pref.edit();
+                    if((jml_peringatan_dini <  Integer.parseInt(str_jml_peringatan_dini)) ||
+                            (jml_info_bencana  <  Integer.parseInt(str_jml_info_bencana)) ||
+                            (!recent_status_laporan_masyarakat.equals(str_status_laporan_masyarakat))){
+                        Notification.Builder builder = new Notification.Builder(getApplication().getBaseContext());
+                        Intent notificationIntent = new Intent(getApplication().getBaseContext(),LandingPage.class);
+                        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        if(jml_peringatan_dini < Integer.parseInt(str_jml_peringatan_dini)){
+                            editor.putString("REDIRECT","peringatan_dini");
+                            notificationIntent.putExtra("redirect", "peringatan_dini");
+                            PendingIntent pendingIntent = PendingIntent.getActivity(getApplication().getBaseContext(), 0,notificationIntent, 0);
+                            builder.setSmallIcon(R.mipmap.ic_launcher)
+                                    .setContentTitle("Notifikasi Peringatan Dini")
+                                    .setContentText("Klik di sini untuk detail")
+                                    .setContentIntent(pendingIntent);
+                        }
+                        if(jml_info_bencana < Integer.parseInt(str_jml_info_bencana)){
+                            editor.putString("REDIRECT","info_bencana");
+                            notificationIntent.putExtra("redirect", "info_bencana");
+                            PendingIntent pendingIntent = PendingIntent.getActivity(getApplication().getBaseContext(), 0,notificationIntent, 0);
+                            builder.setSmallIcon(R.mipmap.ic_launcher)
+                                    .setContentTitle("Notifikasi Info Bencana")
+                                    .setContentText("Klik di sini untuk detail")
+                                    .setContentIntent(pendingIntent);
+                        }
+                        if(!recent_status_laporan_masyarakat.equals(str_status_laporan_masyarakat)){
+                            editor.putString("REDIRECT","laporan_masyarakat");
+                            notificationIntent.putExtra("redirect", "laporan_masyarakat");
+                            PendingIntent pendingIntent = PendingIntent.getActivity(getApplication().getBaseContext(), 0,notificationIntent, 0);
+                            builder.setSmallIcon(R.mipmap.ic_launcher)
+                                    .setContentTitle("Notifikasi Laporan Masyarakat")
+                                    .setContentText("Cek status terkini laporan Anda di sini.")
+                                    .setContentIntent(pendingIntent);
+                        }
+                        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                        builder.setSound(alarmSound);
+                        builder.setAutoCancel(true);
+                        NotificationManager notificationManager = (NotificationManager) getApplication().getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                        Notification notification = builder.getNotification();
+                        notificationManager.notify(R.drawable.notification_template_icon_bg, notification);
                     }
-                    if(jml_info_bencana < Integer.parseInt(str_jml_info_bencana)){
-                        editor.putString("REDIRECT","info_bencana");
-                        notificationIntent.putExtra("redirect", "info_bencana");
-                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplication().getBaseContext(), 0,notificationIntent, 0);
-                        builder.setSmallIcon(R.mipmap.ic_launcher)
-                                .setContentTitle("Notifikasi Info Bencana")
-                                .setContentText("Klik di sini untuk detail")
-                                .setContentIntent(pendingIntent);
-                    }
-                    if(!recent_status_laporan_masyarakat.equals(str_status_laporan_masyarakat)){
-                        editor.putString("REDIRECT","laporan_masyarakat");
-                        notificationIntent.putExtra("redirect", "laporan_masyarakat");
-                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplication().getBaseContext(), 0,notificationIntent, 0);
-                        builder.setSmallIcon(R.mipmap.ic_launcher)
-                                .setContentTitle("Notifikasi Laporan Masyarakat")
-                                .setContentText("Cek status terkini laporan Anda di sini.")
-                                .setContentIntent(pendingIntent);
-                    }
-                    Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                    builder.setSound(alarmSound);
-                    builder.setAutoCancel(true);
-                    NotificationManager notificationManager = (NotificationManager) getApplication().getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
-                    Notification notification = builder.getNotification();
-                    notificationManager.notify(R.drawable.notification_template_icon_bg, notification);
+                    editor.commit();
+                    jml_peringatan_dini = Integer.parseInt(str_jml_peringatan_dini);
+                    jml_info_bencana = Integer.parseInt(str_jml_info_bencana);
+                    recent_status_laporan_masyarakat = str_status_laporan_masyarakat;
+                }else{
+                    Log.d("BPBD Service Lost : ","Data Null or False");
                 }
-                editor.commit();
-                jml_peringatan_dini = Integer.parseInt(str_jml_peringatan_dini);
-                jml_info_bencana = Integer.parseInt(str_jml_info_bencana);
-                recent_status_laporan_masyarakat = str_status_laporan_masyarakat;
             }
         }
     }
