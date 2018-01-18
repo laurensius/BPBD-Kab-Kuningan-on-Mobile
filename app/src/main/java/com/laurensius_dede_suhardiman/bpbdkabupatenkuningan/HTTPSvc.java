@@ -40,6 +40,10 @@ public class HTTPSvc {
                 HttpPost httpPost = new HttpPost(url);
                 if (params != null) {
                     httpPost.setEntity(new UrlEncodedFormEntity(params));
+                    //
+//                    httpPost.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
+//                    httpPost.addHeader("Cookie", "__test=687a8fe4928a42566a5a95eedea99979; expires=Thu, 31-Dec-37 23:55:55 GMT; path=/");
+//                    httpPost.addHeader("Cookie", "ci_session=e44fd7452b29302ea916dd508440a7455b847912; expires=Thu, 31-Dec-37 23:55:55 GMT; path=/");
                 }
                 httpResponse = httpClient.execute(httpPost);
             } else if (method == GET) {
@@ -49,6 +53,9 @@ public class HTTPSvc {
                     url += "?" + paramString;
                 }
                 HttpGet httpGet = new HttpGet(url);
+//                httpGet.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
+//                httpGet.addHeader("Cookie", "__test=687a8fe4928a42566a5a95eedea99979; expires=Thu, 31-Dec-37 23:55:55 GMT; path=/");
+//                httpGet.addHeader("Cookie", "ci_session=e44fd7452b29302ea916dd508440a7455b847912; expires=Thu, 31-Dec-37 23:55:55 GMT; path=/");
                 httpResponse = httpClient.execute(httpGet);
             }
             httpEntity = httpResponse.getEntity();

@@ -89,12 +89,14 @@
         <item>2030</item>
     </string-array>
     <string-array name="kategori">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
+        <item>1-Gunung Meletus</item>
+        <item>2-Kebakaran Hutan dan Lahan</item>
+        <item>3-Banjir</item>
+        <item>4-Longsor</item>
+        <item>5-Angin Kencang</item>
+        <item>6-Gempa Bumi</item>
+        <item>7-Angin Topan</item>
+        <item>8-Kekeringan</item>
     </string-array>
 
 

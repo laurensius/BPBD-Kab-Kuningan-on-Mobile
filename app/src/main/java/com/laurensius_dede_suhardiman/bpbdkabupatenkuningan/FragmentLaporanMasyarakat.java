@@ -62,7 +62,7 @@ public class FragmentLaporanMasyarakat extends Fragment {
     LinearLayout llMenuLaporan, llMenuKirimLaporan, llMenuCekLaporan, llKirimLaporan, llCekLaporan, llError, llNoData, llDetail, llSuccess;
     Spinner spTanggal, spBulan, spTahun, spKategori;
     EditText etJudul, etKampung, etKelurahan, etKecamatan, etKabupaten, etKronologis;
-    ProgressDialog pDialog;
+    public ProgressDialog pDialog;
     ImageView ivPreview;
     Button btnGallery, btnUpload, btnBatal, btnHapusGambar;
     RecyclerView rvLaporanMasyarakat;
@@ -144,6 +144,8 @@ public class FragmentLaporanMasyarakat extends Fragment {
 
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
+        pDialog = new ProgressDialog(getContext());
+
         pref = getActivity().getSharedPreferences("BPBD_ON_MOBILE", 0);
         editor = pref.edit();
         pref_id  = pref.getString("ID",null);
@@ -206,13 +208,27 @@ public class FragmentLaporanMasyarakat extends Fragment {
                         .concat(spBulan.getSelectedItem().toString()).concat("-")
                         .concat(spTanggal.getSelectedItem().toString());
                 judul = etJudul.getText().toString();
-                kategori = String.valueOf(spKategori.getSelectedItemPosition() + 1);
+                String exp = String.valueOf(spKategori.getSelectedItem().toString());
+                Log.d("BPBD TEST",exp);
+                String[] arr = exp.split("-");
+                kategori = arr[0];
                 kampung = etKampung.getText().toString();
                 kelurahan = etKelurahan.getText().toString();
                 kecamatan = etKecamatan.getText().toString();
                 kabupaten = etKabupaten.getText().toString();
                 kronologis = etKronologis.getText().toString();
-                new AsyncUploadLaporan().execute();
+                if(judul.equals("") || judul == null ||
+                kategori.equals("") || kategori == null ||
+                kampung.equals("") || kampung == null ||
+                kelurahan.equals("") || kelurahan == null ||
+                kecamatan.equals("") || kecamatan == null ||
+                kabupaten.equals("") || kabupaten == null ||
+                kronologis.equals("") || kronologis == null){
+                    Toast.makeText(getActivity(),"Kolom tidak boleh dikosongkan",Toast.LENGTH_LONG).show();
+                }else{
+                    new AsyncUploadLaporan().execute();
+                }
+
             }
         });
 
@@ -349,7 +365,7 @@ public class FragmentLaporanMasyarakat extends Fragment {
             HttpClient httpclient = new DefaultHttpClient();
             String url = getResources().getString(R.string.api)
                     .concat(getResources().getString(R.string.laporan_masyarakat_input));
-                    Log.d("Response " , url);
+            Log.d("Response " , url);
             HttpPost httppost = new HttpPost(url);
             try {
                 AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
@@ -375,7 +391,7 @@ public class FragmentLaporanMasyarakat extends Fragment {
                         entity.addPart("lampiran", new FileBody(sourceFile));
                     }
                 }
-                totalSize = entity.getContentLength();
+//                totalSize = entity.getContentLength();
                 httppost.setEntity(entity);
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity r_entity = response.getEntity();
@@ -408,7 +424,7 @@ public class FragmentLaporanMasyarakat extends Fragment {
     private class AsyncLaporanMasyarakat extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
-            pDialog = new ProgressDialog(getContext());
+//            pDialog = new ProgressDialog(getContext());
             pDialog.setMessage("Loading . . .");
             pDialog.setCancelable(false);
             pDialog.show();
@@ -420,8 +436,8 @@ public class FragmentLaporanMasyarakat extends Fragment {
             Log.d(TAG, "Do in background");
             HTTPSvc sh = new HTTPSvc();
             JSON_data = sh.makeServiceCall(getResources().getString(R.string.api)
-                            .concat(getResources().getString(R.string.laporan_masyarakat_by_pengirim))
-                            .concat(pref_id),HTTPSvc.GET);
+                    .concat(getResources().getString(R.string.laporan_masyarakat_by_pengirim))
+                    .concat(pref_id),HTTPSvc.GET);
             if(JSON_data!=null){
                 try {
                     JSONObject jsonObj = new JSONObject(JSON_data);
@@ -516,3 +532,4 @@ public class FragmentLaporanMasyarakat extends Fragment {
     }
 
 }
+
