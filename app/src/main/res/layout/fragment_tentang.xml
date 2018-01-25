@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.laurensius_dede_suhardiman.bpbdkabupatenkuningan.FragmentBeranda">
+
+    <ImageView
+        android:layout_width="256px"
+        android:layout_height="256px"
+        android:src="@mipmap/logo_bpbd"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BPBD Kabupaten Kuningan"
+        android:textColor="#777"
+        android:textStyle="bold"
+        android:textSize="9pt"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Versi 1.0"
+        android:textColor="#777"
+        android:textSize="6pt"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Developed by :"
+        android:textColor="#777"
+        android:textStyle="bold"
+        android:textSize="6pt"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Didin Lukmanudin"
+        android:textColor="#777"
+        android:textStyle="bold"
+        android:textSize="9pt"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Powered by :"
+        android:textColor="#777"
+        android:textStyle="bold"
+        android:textSize="6pt"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kuningan IoT Developer (Restful API)"
+        android:textColor="#777"
+        android:textStyle="bold"
+        android:textSize="7pt"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Android Studio (Gradle and Dev)"
+        android:textColor="#777"
+        android:textStyle="bold"
+        android:textSize="7pt"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CodeIgniter (Backend System)"
+        android:textColor="#777"
+        android:textStyle="bold"
+        android:textSize="7pt"
+        android:textAlignment="center"/>
+
+
+</LinearLayout>

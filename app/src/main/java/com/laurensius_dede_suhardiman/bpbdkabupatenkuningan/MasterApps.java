@@ -146,7 +146,7 @@ public class MasterApps extends AppCompatActivity
         }else if (id == R.id.nav_daftar) {
             fragment = new FragmentDaftar();
         }else if (id == R.id.action_tentang){
-//            fragment = new FragmentTentang();
+            fragment = new FragmentTentang();
         }else if (id == R.id.action_petunjuk){
 //            fragment = new FragmentBantuan();
         }else if (id == R.id.action_logout || id == R.id.nav_logout){

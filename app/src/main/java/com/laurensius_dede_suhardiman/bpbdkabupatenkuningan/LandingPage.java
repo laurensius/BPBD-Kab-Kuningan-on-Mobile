@@ -160,7 +160,7 @@ public class LandingPage extends AppCompatActivity
         }else if (id == R.id.nav_daftar) {
             fragment = new FragmentDaftar();
         }else if (id == R.id.action_tentang){
-//            fragment = new FragmentTentang();
+            fragment = new FragmentTentang();
         }else if (id == R.id.action_petunjuk){
 //            fragment = new FragmentBantuan();
         }
