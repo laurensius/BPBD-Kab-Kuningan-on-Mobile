@@ -150,7 +150,6 @@ public class FragmentDaftar extends Fragment {
                 pDialog.dismiss();
             }
             if(loaddata){
-                tvNotif.setText(message);
                 if(code.equals("SUCCESS")){
                     etUsername.setText("");
                     etPassword.setText("");
@@ -158,6 +157,7 @@ public class FragmentDaftar extends Fragment {
                     etEmail.setText("");
                     etAlamat.setText("");
                 }
+                tvNotif.setText(message);
                 if(severity.equals("success")){
                     tvNotif.setBackgroundColor(Color.parseColor("#A5D6A7"));
                 }else

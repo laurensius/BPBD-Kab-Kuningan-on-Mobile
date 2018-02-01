@@ -9,6 +9,6 @@
     <item
         android:id="@+id/action_tentang"
         android:orderInCategory="100"
-        android:title="Tantang"
+        android:title="Tentang"
         app:showAsAction="never" />
 </menu>

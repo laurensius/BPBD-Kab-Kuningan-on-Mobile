@@ -66,15 +66,15 @@ public class LandingPage extends AppCompatActivity
         if (redirect != null) {
             if(redirect.equals("peringatan_dini")){
                 tx.replace(R.id.FrameMain, new FragmentPeringatanDini());
-                Toast.makeText(LandingPage.this,redirect,Toast.LENGTH_LONG).show();
+                //Toast.makeText(LandingPage.this,redirect,Toast.LENGTH_LONG).show();
             }else
             if(redirect.equals("info_bencana")){
                 tx.replace(R.id.FrameMain, new FragmentInfoBencana());
-                Toast.makeText(LandingPage.this,redirect,Toast.LENGTH_LONG).show();
+                //Toast.makeText(LandingPage.this,redirect,Toast.LENGTH_LONG).show();
             }
         } else {
             tx.replace(R.id.FrameMain, new FragmentBeranda());
-            Toast.makeText(LandingPage.this,redirect,Toast.LENGTH_LONG).show();
+            //Toast.makeText(LandingPage.this,redirect,Toast.LENGTH_LONG).show();
         }
         tx.commit();
 
@@ -162,7 +162,7 @@ public class LandingPage extends AppCompatActivity
         }else if (id == R.id.action_tentang){
             fragment = new FragmentTentang();
         }else if (id == R.id.action_petunjuk){
-//            fragment = new FragmentBantuan();
+            fragment = new FragmentPetunjuk();
         }
 
         if (fragment != null) {

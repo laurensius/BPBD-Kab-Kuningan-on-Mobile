@@ -7,6 +7,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -183,11 +184,16 @@ public class BackgroundService2 extends Service {
                                     .setContentText("Cek status terkini laporan Anda di sini.")
                                     .setContentIntent(pendingIntent);
                         }
-                        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                        builder.setSound(alarmSound);
+//                        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//                        builder.setSound(alarmSound);
+
+                        AudioManager manager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+                        manager.setStreamVolume(AudioManager.STREAM_MUSIC, 10, 0);
                         builder.setAutoCancel(true);
                         NotificationManager notificationManager = (NotificationManager) getApplication().getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
                         Notification notification = builder.getNotification();
+                        notification.sound = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.notif);
+                        notification.defaults = Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE ;
                         notificationManager.notify(R.drawable.notification_template_icon_bg, notification);
                     }
                     editor.commit();

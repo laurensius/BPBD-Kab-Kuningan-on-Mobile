@@ -21,7 +21,6 @@ public class FragmentTentang extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View inflaterTentang = inflater.inflate(R.layout.fragment_tentang, container, false);
-
         return inflaterTentang;
     }
 

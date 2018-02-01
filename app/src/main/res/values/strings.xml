@@ -21,9 +21,36 @@
     <string name="verifikasi">verifikasi/</string>
     <string name="verifikasi_daftar">verifikasi_daftar/</string>
     <string name="notifikasi">notifikasi/</string>
+    <string name="user_edit">user_edit/</string>
+    <string name="user_update">user_update/</string>
+
     <string name="beranda">file:///android_asset/landingpage/index.html</string>
-
-
+    <string name="petunjuk_peringatan_dini">
+        Pada fitur ini Anda akan memperoleh infomasi mengenai peringatan dini yang dikeluarkan oleh BPBD Kabupaten Kuningan.
+        Setiap peringatan dini terbaru akan secara otomatis terkirim ke perangkat genggam Anda, hal ini ditandai dengan munculnya
+        notifikasi pada aplikasi.
+    </string>
+    <string name="petunjuk_info_bencana">
+        Pada fitur ini Anda akan memperoleh infomasi mengenai informasi bencana yang terjadi di Kabupaten Kuningan, informasi yang dikeluarkan langsung oleh BPBD Kabupaten Kuningan,
+        sehingga informasi ini adalah informasi yang valid dan dapat dipertanggungjawabkan kebenarannya.
+        Setiap informasi bencana terbaru akan secara otomatis terkirim ke perangkat genggam Anda, hal ini ditandai dengan munculnya
+        notifikasi pada aplikasi.
+    </string>
+    <string name="petunjuk_laporan_masyarakat">
+        Pada fitur ini Anda dapat melaporkan kejadian bencana yang terjadi disekitar Anda. Setiap laporan yang Anda kirim kepada BPBD Kabupaten Kuningan
+        dapat Anda pantau prosesnya. Sehingga Anda tidak perlu khawatir atau bertanya-tanya mengenai kelanjutan laporan Anda. Setiap perubahan status laporan
+        mulai dari tahap laporan masuk, validasi, proses penanganan sampai dengan selesai diprosesnya laporan yang masuk dapat Anda pantau.
+    </string>
+    <string name="petunjuk_jalur_evakuasi">
+        Pada fitur ini Anda akan memperoleh infomasi mengenai rute atau wilayah yang akan dijadikan jalur evakuasi manakala terjadi bencana.
+    </string>
+    <string name="petunjuk_kerawanan">
+        Pada fitur ini Anda akan memperoleh infomasi mengenai wilayah mana saja yang rawan terhadap terjadinya bencana, seperti : tanah longsor,
+        banjir, kebakaran hutan dan gunung api.
+    </string>
+    <string name="petunjuk_diskusi">
+        Pada fitur ini Anda dapat berinteraksi bersilang pendapat dan berdiskusi baik dengan pihak BPBD Kabupaten Kuningan maupun dengan masyarakat secara umum terkait kebencanaan.
+    </string>
 
     <string-array name="tanggal">
         <item>01</item>

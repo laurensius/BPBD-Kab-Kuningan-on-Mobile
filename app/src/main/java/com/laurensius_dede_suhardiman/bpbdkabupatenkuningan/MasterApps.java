@@ -62,19 +62,19 @@ public class MasterApps extends AppCompatActivity
         if (redirect != null) {
             if(redirect.equals("peringatan_dini")){
                 tx.replace(R.id.FrameMain, new FragmentPeringatanDini());
-                Toast.makeText(MasterApps.this,redirect,Toast.LENGTH_LONG).show();
+                //Toast.makeText(MasterApps.this,redirect,Toast.LENGTH_LONG).show();
             }else
             if(redirect.equals("info_bencana")){
                 tx.replace(R.id.FrameMain, new FragmentInfoBencana());
-                Toast.makeText(MasterApps.this,redirect,Toast.LENGTH_LONG).show();
+                //Toast.makeText(MasterApps.this,redirect,Toast.LENGTH_LONG).show();
             }else
             if(redirect.equals("laporan_masyarakat")){
                 tx.replace(R.id.FrameMain, new FragmentLaporanMasyarakat());
-                Toast.makeText(MasterApps.this,redirect,Toast.LENGTH_LONG).show();
+                //Toast.makeText(MasterApps.this,redirect,Toast.LENGTH_LONG).show();
             }
         } else {
             tx.replace(R.id.FrameMain, new FragmentBeranda());
-            Toast.makeText(MasterApps.this,redirect,Toast.LENGTH_LONG).show();
+            //Toast.makeText(MasterApps.this,redirect,Toast.LENGTH_LONG).show();
         }
         tx.commit();
         dialBox = createDialogBox();
@@ -145,10 +145,12 @@ public class MasterApps extends AppCompatActivity
             fragment = new FragmentLogin();
         }else if (id == R.id.nav_daftar) {
             fragment = new FragmentDaftar();
+        }else if (id == R.id.nav_profil) {
+            fragment = new FragmentProfil();
         }else if (id == R.id.action_tentang){
             fragment = new FragmentTentang();
         }else if (id == R.id.action_petunjuk){
-//            fragment = new FragmentBantuan();
+            fragment = new FragmentPetunjuk();
         }else if (id == R.id.action_logout || id == R.id.nav_logout){
             stopService(new Intent(getBaseContext(), BackgroundService2.class));
             SharedPreferences preferences = getApplicationContext().getSharedPreferences("BPBD_ON_MOBILE", 0);
